@@ -1,10 +1,9 @@
-//https://api.binance.com/api/v3/avgPrice?symbol=BNBBTC
 //https://api.coindesk.com/v1/bpi/currentprice.json
 //https://api.binance.com/api/v3/ticker/price
 
 window.onload = function() {
     jalarDatos();
-    setInterval(jalarDatos, 30000);
+    setInterval(jalarDatos, 10000);
 }
 
 function jalarDatos() {
@@ -16,7 +15,12 @@ function jalarDatos() {
 function displayData(data) {
     console.log(data);
     var priceDiv = document.getElementById("priceid");
-    priceDiv.innerHTML = data.bpi.USD.rate_float;
+    let USDollar = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
+    price = data.bpi.USD.rate_float
+    priceDiv.innerHTML = "= " + USDollar.format(price);
     }
 
 }
